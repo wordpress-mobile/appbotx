@@ -110,7 +110,7 @@ static NSString* const kiTunesID = @"650762525";
 
 - (IBAction)showFAQs:(id)sender
 {
-    [ABXFAQsViewController showFromController:self hideContactButton:NO contactMetaData:nil];
+    [ABXFAQsViewController showFromController:self hideContactButton:NO contactMetaData:nil initialSearch:nil];
 }
 
 - (IBAction)showVersions:(id)sender

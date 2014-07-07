@@ -13,9 +13,11 @@
 
 + (void)showFromController:(UIViewController*)controller
          hideContactButton:(BOOL)hideContactButton
-           contactMetaData:(NSDictionary*)contactMetaData;
+           contactMetaData:(NSDictionary*)contactMetaData
+             initialSearch:(NSString*)initialSearch;
 
 @property (nonatomic, assign) BOOL hideContactButton;
 @property (nonatomic, strong) NSDictionary *contactMetaData;
+@property (nonatomic, copy) NSString *initialSearch;
 
 @end

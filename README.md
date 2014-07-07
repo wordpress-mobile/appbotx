@@ -40,11 +40,12 @@ To run the example project; clone the repo, and open "Sample Project.xcodeproj" 
 #### Default UI
 To show the default UI simply call the showFromController helper method on ABXFAQsViewController.
 
-	[ABXFAQsViewController showFromController:self hideContactButton:NO contactMetaData:nil];
+	[ABXFAQsViewController showFromController:self hideContactButton:NO contactMetaData:nil initialSearch:nil];
 
 * **controller** - required - the controller to be presented from.
 * **hideContactButton** - YES/NO - if the contact button should be shown the the top right.
 * **metaData** - optional - extra meta data you would like to attach if the contact is shown, only use types supported by NSJSONSerialization, e.g. NSString, NSNumber etc.
+* **initialSearch** - optional - the initial search filter to apply to the results. 
 
 #### Push On Your Own UINavigationController
 
@@ -120,8 +121,6 @@ Showing new versions / update text:
 * **buttonColor** - required - the color for the buttons.
 * **complete** - optional - a callback when the operation has completed.
 
----
-
 #### Manually Fetching
 
 Fetch the list of versions:
@@ -153,6 +152,8 @@ Fetch the current version:
 * **responseCode** - response code, ABXResponseCodeSuccess for success, see enum for errors.
 * **httpCode** - the http code, 200 for success etc.
 * **error** - the error, nil if success.
+
+---
 
 ### Notifications
 

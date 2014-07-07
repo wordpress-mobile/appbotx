@@ -25,11 +25,12 @@
 
 @implementation ABXFAQsViewController
 
-+ (void)showFromController:(UIViewController*)controller hideContactButton:(BOOL)hideContactButton contactMetaData:(NSDictionary*)contactMetaData;
++ (void)showFromController:(UIViewController*)controller hideContactButton:(BOOL)hideContactButton contactMetaData:(NSDictionary*)contactMetaData initialSearch:(NSString*)initialSearch
 {
     ABXFAQsViewController *viewController = [[self alloc] init];
     viewController.hideContactButton = hideContactButton;
     viewController.contactMetaData = contactMetaData;
+    viewController.initialSearch = initialSearch;
     UINavigationController *nav = [[ABXNavigationController alloc] initWithRootViewController:viewController];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         // Show as a sheet on iPad
@@ -82,6 +83,7 @@
     // Search bar
     self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 44)];
     self.searchBar.delegate = self;
+    self.searchBar.text = self.initialSearch;
     self.searchBar.placeholder = [@"Search..." localizedString];
     self.tableView.tableHeaderView = self.searchBar;
     
@@ -105,13 +107,12 @@
         [self.activityView stopAnimating];
         if (responseCode == ABXResponseCodeSuccess) {
             self.faqs = faqs;
-            self.filteredFaqs = faqs;
-            [self.tableView reloadData];
             
             if (faqs.count == 0) {
                 [self showError:[@"No FAQs" localizedString]];
             }
             else {
+                [self applySearch:self.searchBar.text];
                 self.tableView.hidden = NO;
             }
         }
@@ -201,7 +202,7 @@
     [searchBar setShowsCancelButton:NO animated:YES];
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+- (void)applySearch:(NSString*)searchText
 {
     if (searchText.length > 0) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.question contains[cd] %@ OR SELF.answer contains[cd] %@", searchText, searchText];
@@ -218,6 +219,11 @@
         self.filteredFaqs = self.faqs;
     }
     [self.tableView reloadData];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self applySearch:searchText];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
