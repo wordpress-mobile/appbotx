@@ -1,10 +1,10 @@
 # AppbotX
 
-AppbotX is an iOS client library and sample application for the [AppbotX](http://appbot.co/appbotx) service. It is currently in [limited beta](https://appbot.co/appbotx).
+AppbotX is an iOS client library and [sample application](https://github.com/appbotx/appbotx/tree/master/Example) for the [AppbotX](http://appbot.co/appbotx) service. It is currently in [limited beta](https://appbot.co/appbotx).
 
 ## Requirements
 
-The sample project includes a test key, but for you own application you will need an [Appbot](http://appbot.co) account and an API key.
+The [sample project](https://github.com/appbotx/appbotx/tree/master/Example) includes a test key, but for you own application you will need an [Appbot](http://appbot.co) account and an API key.
 
 ## Installation
 
@@ -33,7 +33,7 @@ And import ABX.h into your precompiled header. Alternatively you can just includ
 
 ## Usage
 
-To run the example project; clone the repo, and open "Sample Project.xcodeproj" from the Example folder.
+To run the example project; clone the repo, and open "Sample Project.xcodeproj" from the [Example folder](https://github.com/appbotx/appbotx/tree/master/Example).
 
 ### FAQ
 
@@ -167,7 +167,7 @@ e.g.
 
 	"How can we help?" = "How can we help you with Sample App?";
 	
-See the sample app for an example.
+See the [sample app](https://github.com/appbotx/appbotx/tree/master/Example) for an example.
 
 ## Communication
 
