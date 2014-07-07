@@ -204,21 +204,23 @@
 
 - (void)applySearch:(NSString*)searchText
 {
-    if (searchText.length > 0) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.question contains[cd] %@ OR SELF.answer contains[cd] %@", searchText, searchText];
-        self.filteredFaqs = [self.faqs filteredArrayUsingPredicate:predicate];
-        
-        if (self.filteredFaqs.count > 0) {
-            self.errorLabel.hidden = YES;
+    if (self.faqs.count > 0) {
+        if (searchText.length > 0) {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.question contains[cd] %@ OR SELF.answer contains[cd] %@", searchText, searchText];
+            self.filteredFaqs = [self.faqs filteredArrayUsingPredicate:predicate];
+            
+            if (self.filteredFaqs.count > 0) {
+                self.errorLabel.hidden = YES;
+            }
+            else {
+                [self showError:[@"No matches found" localizedString]];
+            }
         }
         else {
-            [self showError:[@"No matches found" localizedString]];
+            self.filteredFaqs = self.faqs;
         }
+        [self.tableView reloadData];
     }
-    else {
-        self.filteredFaqs = self.faqs;
-    }
-    [self.tableView reloadData];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
