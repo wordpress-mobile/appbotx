@@ -114,7 +114,7 @@
     [bottom addSubview:toolbar];
     
     // Voting label
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 100, 44)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 200, 44)];
     label.font = [UIFont systemFontOfSize:15];
     label.text = [@"Helpful?" localizedString];
     label.backgroundColor = [UIColor clearColor];
