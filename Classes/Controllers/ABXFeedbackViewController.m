@@ -57,16 +57,19 @@ static NSInteger const kCloseAlert = 1;
     [self.view addSubview:scrollView];
     
     // Email label
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 90, 50)];
+    NSString *promptText = [@"Your Email:" localizedString];
+    UIFont *promptFont = [UIFont systemFontOfSize:15];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, [promptText widthToFitFont:promptFont], 50)];
     label.textColor = [UIColor grayColor];
-    label.text = [@"Your Email:" localizedString];
-    label.font = [UIFont systemFontOfSize:15];
+    label.text = promptText;
+    label.font = promptFont;
     [scrollView addSubview:label];
     
     // Field for their email
-    CGRect tfRect = CGRectMake(110, 0, CGRectGetWidth(self.view.frame) - 120, 50);
+    CGFloat labelWidth = CGRectGetWidth(label.frame);
+    CGRect tfRect = CGRectMake(labelWidth + 25, 0, CGRectGetWidth(self.view.frame) - labelWidth - 30, 50);
     if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] == NSOrderedAscending) {
-        tfRect = CGRectMake(110, 15, CGRectGetWidth(self.view.frame) - 120, 31);
+        tfRect = CGRectMake(labelWidth + 25, 15, CGRectGetWidth(self.view.frame) - labelWidth - 30, 31);
     }
     UITextField *textField = [[UITextField alloc] initWithFrame:tfRect];
     textField.placeholder = [@"Email Placeholder" localizedString];
