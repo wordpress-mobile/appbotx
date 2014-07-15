@@ -1,6 +1,6 @@
 # AppbotX
 
-AppbotX is an iOS client library and [sample application](https://github.com/appbotx/appbotx/tree/master/Example) for the [AppbotX](http://appbot.co/appbotx) service. It is currently in [limited beta](https://appbot.co/appbotx).
+AppbotX is an iOS client library and [sample application](https://github.com/appbotx/appbotx/tree/master/Example) for the [AppbotX](http://appbot.co/appbotx) service. 
 
 ## Requirements
 
@@ -157,7 +157,57 @@ Fetch the current version:
 
 ### Notifications
 
-Documentation coming soon, check the example.
+#### Default UI
+
+Showing a list:
+
+	[ABXNotificationsViewController showFromController:self];
+	
+* **controller** - required - the controller to be presented from.
+	
+Showing the current active notification:
+
+[ABXNotificationView fetchAndShowInController:self
+backgroundColor:[UIColor blackColor] textColor:[UIColor whiteColor]  buttonColor:[UIColor blueColor] complete:^(BOOL shown)  {
+                                         }];
+
+* **controller** - required - the controller to be presented from.
+* **backgroundColor** - required - the background color for the control.
+* **textColor** - required - the text color for the control.
+* **buttonColor** - required - the color for the buttons.
+* **complete** - optional - a callback when the operation has completed.
+
+#### Manually Fetching
+
+Fetch the list of notifications:
+
+	[ABXNotification fetch:^(NSArray *notifications, ABXResponseCode responseCode, NSInteger httpCode, NSError *error) {
+        switch (responseCode) {
+            case ABXResponseCodeSuccess: {
+            }
+                break;
+                
+            default: {
+            }
+                break;
+        }
+    }];
+ 
+* **notifications** array of ABXNotification objects.
+* **responseCode** - response code, ABXResponseCodeSuccess for success, see enum for errors.
+* **httpCode** - the http code, 200 for success etc.
+* **error** - the error, nil if success.
+
+Fetch the active notification:
+
+    [ABXNotification fetchActive:^(NSArray *notifications, ABXResponseCode responseCode, NSInteger httpCode, NSError *error) {
+        switch (responseCode)  {
+    }];
+    
+* **notifications** array of ABXNotification objects, currently only ever one.
+* **responseCode** - response code, ABXResponseCodeSuccess for success, see enum for errors.
+* **httpCode** - the http code, 200 for success etc.
+* **error** - the error, nil if success.
 
 ## Localizing Strings
 
