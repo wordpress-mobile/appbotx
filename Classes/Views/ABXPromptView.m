@@ -17,8 +17,8 @@
 @property (nonatomic, strong) UIButton *closeButton;
 @property (nonatomic, strong) UIButton *leftButton;
 @property (nonatomic, strong) UIButton *rightButton;
-@property (nonatomic, strong) UIButton *largeButton;
 
+@property (nonatomic, assign) BOOL step2;
 @property (nonatomic, assign) BOOL liked;
 
 @end
@@ -61,7 +61,6 @@
     self.label.text = [[[@"What do you think about " localizedString] stringByAppendingString:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]] stringByAppendingString:@"?"];
     [self.container addSubview:self.label];
     
-    
     self.leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.leftButton.frame = CGRectMake(CGRectGetMidX(self.container.bounds) - 135, 50, 130, 30);
     self.leftButton.backgroundColor = [UIColor colorWithWhite:0.6 alpha:1];
@@ -83,47 +82,48 @@
     self.rightButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [self.rightButton addTarget:self action:@selector(onImprove) forControlEvents:UIControlEventTouchUpInside];
     [self.container addSubview:self.rightButton];
-    
-    self.largeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.largeButton.frame = CGRectMake(CGRectGetMidX(self.container.bounds) - 100, 50, 200, 30);
-    self.largeButton.backgroundColor = [UIColor colorWithWhite:0.6 alpha:1];
-    self.largeButton.layer.cornerRadius = 4;
-    self.largeButton.layer.masksToBounds = YES;
-    [self.largeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.largeButton.titleLabel.font = [UIFont systemFontOfSize:15];
-    [self.largeButton addTarget:self action:@selector(onLargeButton) forControlEvents:UIControlEventTouchUpInside];
-    self.largeButton.alpha = 0;
-    [self.container addSubview:self.largeButton];
 }
 
 #pragma mark - Buttons
 
 - (void)onLove
 {
-    self.liked = YES;
-    [UIView animateWithDuration:0.3
-                     animations:^{
-                         self.label.text = [@"Great! Could you leave us a nice review?\r\nIt really helps."  localizedString];
-                         [self.largeButton setTitle:[@"Leave a Review" localizedString] forState:UIControlStateNormal];
-                         [self.closeButton setTitle:[@"no thanks" localizedString] forState:UIControlStateNormal];
-                         self.leftButton.alpha = 0;
-                         self.rightButton.alpha = 0;
-                         self.largeButton.alpha = 1;
-                     }];
+    if (self.step2) {
+        if (self.liked && self.delegate && [self.delegate respondsToSelector:@selector(appbotPromptForReview)]) {
+            [self.delegate appbotPromptForReview];
+        }
+        else if (!self.liked && self.delegate && [self.delegate respondsToSelector:@selector(appbotPromptForFeedback)]) {
+            [self.delegate appbotPromptForFeedback];
+        }
+    }
+    else {
+        self.liked = YES;
+        self.step2 = YES;
+        [UIView animateWithDuration:0.3
+                         animations:^{
+                             self.label.text = [@"Great! Could you leave us a nice review?\r\nIt really helps."  localizedString];
+                             [self.leftButton setTitle:[@"Leave a Review" localizedString] forState:UIControlStateNormal];
+                             [self.rightButton setTitle:[[@"no thanks" localizedString] capitalizedString] forState:UIControlStateNormal];
+                         }];
+    }
 }
 
 - (void)onImprove
 {
-    self.liked = NO;
-    [UIView animateWithDuration:0.3
-                     animations:^{
-                         self.label.text = [@"Could you tell us how we could improve?" localizedString];
-                         [self.largeButton setTitle:[@"Send Feedback" localizedString] forState:UIControlStateNormal];
-                         [self.closeButton setTitle:[@"no thanks" localizedString] forState:UIControlStateNormal];
-                         self.leftButton.alpha = 0;
-                         self.rightButton.alpha = 0;
-                         self.largeButton.alpha = 1;
-                     }];
+    if (self.step2) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(appbotPromptClose)]) {
+            [self.delegate appbotPromptClose];
+        }
+    }
+    else {
+        self.liked = NO;
+        self.step2 = YES;
+        [UIView animateWithDuration:0.3
+                         animations:^{
+                             self.label.text = [@"Could you tell us how we could improve?" localizedString];
+                             [self.leftButton setTitle:[@"Send Feedback" localizedString] forState:UIControlStateNormal];                         [self.rightButton setTitle:[[@"no thanks" localizedString] capitalizedString] forState:UIControlStateNormal];
+                         }];
+    }
 }
 
 - (void)onLargeButton

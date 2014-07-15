@@ -12,6 +12,7 @@
 
 - (void)appbotPromptForReview;
 - (void)appbotPromptForFeedback;
+- (void)appbotPromptClose;
 
 @end
 
