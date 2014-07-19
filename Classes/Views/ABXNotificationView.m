@@ -64,6 +64,7 @@
         // Action button
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tintColor = buttonColor;
+        [button setTitleColor:buttonColor forState:UIControlStateNormal];
         [button setTitle:actionText forState:UIControlStateNormal];
         button.frame = CGRectMake((CGRectGetWidth(view.bounds) - kMaxWidth)/2, totalHeight - 40, kMaxWidth/2, 40);
         button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
@@ -75,6 +76,7 @@
     // Close Button
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.tintColor = buttonColor;
+    [button setTitleColor:buttonColor forState:UIControlStateNormal];
     [button setTitle:[@"Close" localizedString] forState:UIControlStateNormal];
     if (actionText) {
         button.frame = CGRectMake(CGRectGetWidth(view.bounds) / 2, totalHeight - 40, kMaxWidth / 2, 40);
