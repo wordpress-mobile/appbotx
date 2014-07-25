@@ -60,11 +60,10 @@
     label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [view addSubview:label];
     
-    if (actionText) {
+    if (actionText && actionText.length > 0) {
         // Action button
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         button.tintColor = buttonColor;
-        [button setTitleColor:buttonColor forState:UIControlStateNormal];
         [button setTitle:actionText forState:UIControlStateNormal];
         button.frame = CGRectMake((CGRectGetWidth(view.bounds) - kMaxWidth)/2, totalHeight - 40, kMaxWidth/2, 40);
         button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
@@ -74,15 +73,14 @@
     }
     
     // Close Button
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
     button.tintColor = buttonColor;
-    [button setTitleColor:buttonColor forState:UIControlStateNormal];
     [button setTitle:[@"Close" localizedString] forState:UIControlStateNormal];
-    if (actionText) {
+    if (actionText && actionText.length > 0) {
         button.frame = CGRectMake(CGRectGetWidth(view.bounds) / 2, totalHeight - 40, kMaxWidth / 2, 40);
     }
     else {
-        button.frame = CGRectMake((CGRectGetWidth(view.bounds) - kMaxWidth)/2, totalHeight - 40, CGRectGetWidth(view.bounds) / 2, 40);
+        button.frame = CGRectMake(0, totalHeight - 40, CGRectGetWidth(view.bounds), 40);
     }
     button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     button.titleLabel.font = [UIFont boldSystemFontOfSize:15];
