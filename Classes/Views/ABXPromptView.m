@@ -89,6 +89,7 @@
 - (void)onLove
 {
     if (self.step2) {
+        [[self class] setHasHadInteractionForCurrentVersion];
         if (self.liked && self.delegate && [self.delegate respondsToSelector:@selector(appbotPromptForReview)]) {
             [self.delegate appbotPromptForReview];
         }
@@ -111,6 +112,7 @@
 - (void)onImprove
 {
     if (self.step2) {
+        [[self class] setHasHadInteractionForCurrentVersion];
         if (self.delegate && [self.delegate respondsToSelector:@selector(appbotPromptClose)]) {
             [self.delegate appbotPromptClose];
         }

@@ -32,6 +32,7 @@ static NSString* const kiTunesID = @"650762525";
     // [ABXPromptView hasHadInteractionForCurrentVersion]
     // It's also good to only show it after a positive interaction
     // or a number of usages of the app
+    self.promptView.hidden = [ABXPromptView hasHadInteractionForCurrentVersion];
     self.promptView.delegate = self;
 }
 
