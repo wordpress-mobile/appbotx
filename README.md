@@ -219,6 +219,45 @@ e.g.
 	
 See the [sample app](https://github.com/appbotx/appbotx/tree/master/Example) for an example.
 
+## Review Prompt
+
+Add a property to store the ABXPromptView
+
+    #import "ABXPromptView.h"
+    @interface YourViewController ()<ABXPromptViewDelegate>
+    @property (nonatomic, strong) ABXPromptView *promptView;
+    @end
+
+Add it to your view dynamically:
+
+    // The prompt view is an example workflow using AppbotX
+    // It's also good to only show it after a positive interaction
+    // or a number of usages of the app
+    if (![ABXPromptView hasHadInteractionForCurrentVersion]) {
+        self.promptView = [[ABXPromptView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - 100, CGRectGetWidth(self.view.bounds), 100)];
+        self.promptView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+        [self.view addSubview:self.promptView];
+        self.promptView.delegate = self;
+    }
+
+Implement the delegate:
+
+    #pragma mark - ABXPromptViewDelegate
+    
+    - (void)appbotPromptForReview  {
+        [ABXAppStore openAppStoreReviewForApp:kiTunesID];
+        self.promptView.hidden = YES;
+    }
+    
+    - (void)appbotPromptForFeedback  {
+        [ABXFeedbackViewController showFromController:self placeholder:nil];
+        self.promptView.hidden = YES;
+    }
+
+    - (void)appbotPromptClose {
+        self.promptView.hidden = YES;
+    }
+
 ## Communication
 
 * If you found a bug, [open an issue](https://github.com/appbotx/appbotx/issues).

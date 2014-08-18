@@ -15,7 +15,7 @@
 
 @interface ABXViewController ()<ABXPromptViewDelegate>
 
-@property (nonatomic, strong) IBOutlet ABXPromptView *promptView;
+@property (nonatomic, strong) ABXPromptView *promptView;
 
 @end
 
@@ -28,12 +28,14 @@ static NSString* const kiTunesID = @"650762525";
     [super viewDidLoad];
     
     // The prompt view is an example workflow using AppbotX
-    // you could choose to hide it if it's been seen already
-    // [ABXPromptView hasHadInteractionForCurrentVersion]
     // It's also good to only show it after a positive interaction
     // or a number of usages of the app
-    self.promptView.hidden = [ABXPromptView hasHadInteractionForCurrentVersion];
-    self.promptView.delegate = self;
+    if (![ABXPromptView hasHadInteractionForCurrentVersion]) {
+        self.promptView = [[ABXPromptView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - 100, CGRectGetWidth(self.view.bounds), 100)];
+        self.promptView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+        [self.view addSubview:self.promptView];
+        self.promptView.delegate = self;
+    }
 }
 
 - (void)didReceiveMemoryWarning

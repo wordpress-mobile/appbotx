@@ -128,18 +128,6 @@
     }
 }
 
-- (void)onLargeButton
-{
-    [[self class] setHasHadInteractionForCurrentVersion];
-    
-    if (self.liked && self.delegate && [self.delegate respondsToSelector:@selector(appbotPromptForReview)]) {
-        [self.delegate appbotPromptForReview];
-    }
-    else if (!self.liked && self.delegate && [self.delegate respondsToSelector:@selector(appbotPromptForFeedback)]) {
-        [self.delegate appbotPromptForFeedback];
-    }
-}
-
 static NSString* const kInteractionKey = @"ABXPromptViewInteraction";
 
 + (NSString*)keyForCurrentVersion
