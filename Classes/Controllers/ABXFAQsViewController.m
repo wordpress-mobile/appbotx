@@ -185,7 +185,7 @@
         
         // Show the details
         [ABXFAQViewController pushOnNavController:self.navigationController
-                                              faq:self.faqs[indexPath.row]
+                                              faq:self.filteredFaqs[indexPath.row]
                                 hideContactButton:self.hideContactButton];
     }
 }
