@@ -22,6 +22,4 @@
 
 + (BOOL)hasHadInteractionForCurrentVersion;
 
-@property (nonatomic, strong) UIColor *backgroundColor;
-
 @end

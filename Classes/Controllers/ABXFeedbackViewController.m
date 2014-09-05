@@ -97,7 +97,7 @@ static NSInteger const kCloseAlert = 1;
     [scrollView addSubview:self.textView];
     
     // Attachments
-    self.attachmentsView = [[UIView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.textView.frame), CGRectGetWidth(self.view.frame) - 40, 44)];
+    self.attachmentsView = [[UIView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.textView.frame), CGRectGetWidth(self.view.frame) - 30, 22)];
     self.attachmentsView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [scrollView addSubview:self.attachmentsView];
     
@@ -109,19 +109,20 @@ static NSInteger const kCloseAlert = 1;
         self.attachmentsButton.frame = CGRectMake(CGRectGetWidth(self.attachmentsView.frame) - width - 10, 6, width + 20, 32);
     }
     else {
-        self.attachmentsButton.frame = CGRectMake(CGRectGetWidth(self.attachmentsView.frame) - width, 0, width, 44);
+        self.attachmentsButton.frame = CGRectMake(CGRectGetWidth(self.attachmentsView.frame) - width, 0, width, 22);
     }
     self.attachmentsButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     [self.attachmentsButton addTarget:self action:@selector(onAttachment:) forControlEvents:UIControlEventTouchUpInside];
     [self.attachmentsView addSubview:self.attachmentsButton];
     
     // Preview image
-    self.attachmentsImageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.attachmentsView.frame) - 34, 0, 34, 34)];
+    self.attachmentsImageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.attachmentsView.frame) - 22, 0, 22, 22)];
     self.attachmentsImageView.hidden = YES;
     self.attachmentsImageView.clipsToBounds = YES;
     self.attachmentsImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.attachmentsImageView.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:1].CGColor;
     self.attachmentsImageView.layer.borderWidth = 1;
+    self.attachmentsImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     [self.attachmentsView addSubview:self.attachmentsImageView];
     
     // Title
@@ -150,7 +151,6 @@ static NSInteger const kCloseAlert = 1;
                           cancelButtonTitle:[@"OK" localizedString]
                           otherButtonTitles:nil] show];
     }
-    
 }
 
 + (void)showFromController:(UIViewController*)controller
@@ -218,11 +218,11 @@ static NSInteger const kCloseAlert = 1;
     // Move the textView so the bottom doesn't extend beyound the keyboard
     CGRect tvFrame = self.textView.frame;
     CGRect attachFrame = self.attachmentsView.frame;
-    tvFrame.size.height = CGRectGetHeight(self.textView.superview.bounds) - (CGRectGetHeight(keyboardRect) + CGRectGetMinY(tvFrame) + topOffset) - CGRectGetHeight(attachFrame);
+    tvFrame.size.height = CGRectGetHeight(self.textView.superview.bounds) - (CGRectGetHeight(keyboardRect) + CGRectGetMinY(tvFrame) + topOffset) - CGRectGetHeight(attachFrame) + 5;
     self.textView.frame = tvFrame;
     
     // Move the seperator
-    attachFrame.origin.y = CGRectGetMaxY(tvFrame);
+    attachFrame.origin.y = CGRectGetMaxY(tvFrame) - 5;
     self.attachmentsView.frame = attachFrame;
 }
 

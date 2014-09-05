@@ -38,7 +38,12 @@
 {
 	[[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(textDidChange:)
-                                                 name:UITextViewTextDidChangeNotification object:self];
+                                                 name:UITextViewTextDidChangeNotification
+                                               object:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(setNeedsDisplay)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
 }
 
 - (void)textDidChange:(NSNotification*)notification
@@ -50,9 +55,7 @@
 
 - (void)dealloc
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UITextViewTextDidChangeNotification
-                                                  object:self];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)drawRect:(CGRect)rect

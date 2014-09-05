@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) ABXPromptView *promptView;
 
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+
 @end
 
 @implementation ABXViewController
@@ -42,6 +44,11 @@ static NSString* const kiTunesID = @"650762525";
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [_scrollView setContentSize:CGSizeMake(CGRectGetWidth(self.view.frame), 460)];
 }
 
 - (BOOL)prefersStatusBarHidden
