@@ -18,8 +18,6 @@
 @property (nonatomic, strong) UILabel *textDetailsLabel;
 @property (nonatomic, strong) UIButton *actionButton;
 
-@property (nonatomic, strong) ABXNotification *notification;
-
 @end
 
 @implementation ABXNotificationTableViewCell
@@ -76,7 +74,7 @@
     self.dateLabel.text = [dateFormatter stringFromDate:notification.createdAt];
     
     self.textDetailsLabel.text = notification.message;
-    [self.textDetailsLabel sizeToFit];
+    [self setNeedsLayout];
     
     if ([notification hasAction]) {
         self.actionButton.hidden = NO;
@@ -85,6 +83,15 @@
     else {
         self.actionButton.hidden = YES;
     }
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    CGRect r = self.textDetailsLabel.frame;
+    r.size.height = [self.notification.message heightForWidth:CGRectGetWidth(self.contentView.bounds) - 30 andFont:[ABXNotificationTableViewCell detailFont]];
+    self.textDetailsLabel.frame = r;
 }
 
 - (void)onAction

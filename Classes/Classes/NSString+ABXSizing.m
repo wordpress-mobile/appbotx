@@ -16,7 +16,7 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
     if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending) {
         size = [self boundingRectWithSize:constraintSize
-                                             options:NSStringDrawingUsesLineFragmentOrigin
+                                             options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
                                           attributes:@{NSFontAttributeName:font}
                                              context:nil].size;
     }
@@ -46,7 +46,7 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
     if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending) {
         size = [self boundingRectWithSize:constraintSize
-                                  options:NSStringDrawingUsesLineFragmentOrigin
+                                  options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
                                attributes:@{NSFontAttributeName:font}
                                   context:nil].size;
     }

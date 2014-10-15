@@ -57,6 +57,8 @@
 
 - (void)setVersion:(ABXVersion *)version
 {
+    _version = version;
+    
     self.versionLabel.text = [[[@"Version" localizedString] stringByAppendingString:@" "] stringByAppendingString:version.version];
     
     static dispatch_once_t onceToken;
@@ -69,7 +71,16 @@
     self.dateLabel.text = [dateFormatter stringFromDate:version.releaseDate];
     
     self.textDetailsLabel.text = version.text;
-    [self.textDetailsLabel sizeToFit];
+    [self setNeedsLayout];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    CGRect r = self.textDetailsLabel.frame;
+    r.size.height = [self.version.text heightForWidth:CGRectGetWidth(self.contentView.bounds) - 30 andFont:[ABXVersionTableViewCell detailFont]];
+    self.textDetailsLabel.frame = r;
 }
 
 + (UIFont*)detailFont
@@ -84,6 +95,8 @@
 
 + (CGFloat)heightForVersion:(ABXVersion*)version withWidth:(CGFloat)width
 {
+    NSLog(@"- Width : %f", width);
+    
     return [version.text heightForWidth:width - 30 andFont:[self detailFont]] + 60;
 }
 

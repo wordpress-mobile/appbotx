@@ -12,7 +12,7 @@
 
 @interface ABXVersionTableViewCell : UITableViewCell
 
-- (void)setVersion:(ABXVersion*)version;
+@property (nonatomic, strong) ABXVersion *version;
 
 + (CGFloat)heightForVersion:(ABXVersion*)version withWidth:(CGFloat)width;
 

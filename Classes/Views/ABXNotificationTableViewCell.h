@@ -14,7 +14,7 @@
 
 @interface ABXNotificationTableViewCell : UITableViewCell
 
-- (void)setNotification:(ABXNotification *)notification;
+@property (nonatomic, strong) ABXNotification *notification;
 
 + (CGFloat)heightForNotification:(ABXNotification*)notification withWidth:(CGFloat)width;
 
