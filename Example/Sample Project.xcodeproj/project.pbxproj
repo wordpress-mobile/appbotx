@@ -36,6 +36,7 @@
 		E039FD9E192C843000BA0B76 /* ABXModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E039FD9D192C843000BA0B76 /* ABXModel.m */; };
 		E039FDA1192C8F7A00BA0B76 /* ABXIssue.m in Sources */ = {isa = PBXBuildFile; fileRef = E039FDA0192C8F7A00BA0B76 /* ABXIssue.m */; };
 		E0484E7D195A6BBD001AFD5C /* ABXAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = E0484E7C195A6BBD001AFD5C /* ABXAttachment.m */; };
+		E059155019EE0F63002E358C /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E059154F19EE0F63002E358C /* Launch Screen.xib */; };
 		E0B026A3195BAE430065C07B /* AppbotX.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E0B026A2195BAE430065C07B /* AppbotX.bundle */; };
 		E0B026A6195BAEC00065C07B /* NSString+ABXLocalized.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B026A5195BAEC00065C07B /* NSString+ABXLocalized.m */; };
 		E0B026F2196119E80065C07B /* UIViewController+ABXScreenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B026F1196119E80065C07B /* UIViewController+ABXScreenshot.m */; };
@@ -107,6 +108,8 @@
 		E039FDA0192C8F7A00BA0B76 /* ABXIssue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABXIssue.m; sourceTree = "<group>"; };
 		E0484E7B195A6BBD001AFD5C /* ABXAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABXAttachment.h; sourceTree = "<group>"; };
 		E0484E7C195A6BBD001AFD5C /* ABXAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABXAttachment.m; sourceTree = "<group>"; };
+		E059154E19EE0EFA002E358C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E059154F19EE0F63002E358C /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		E0B026A2195BAE430065C07B /* AppbotX.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppbotX.bundle; sourceTree = "<group>"; };
 		E0B026A4195BAEC00065C07B /* NSString+ABXLocalized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ABXLocalized.h"; sourceTree = "<group>"; };
 		E0B026A5195BAEC00065C07B /* NSString+ABXLocalized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ABXLocalized.m"; sourceTree = "<group>"; };
@@ -184,6 +187,7 @@
 				E039FD92192C51FB00BA0B76 /* ABXViewController.m */,
 				E039FD94192C521B00BA0B76 /* Storyboard.storyboard */,
 				E0245EA51964F229008F163B /* Localizable.strings */,
+				E059154F19EE0F63002E358C /* Launch Screen.xib */,
 			);
 			path = "Sample Project";
 			sourceTree = "<group>";
@@ -336,6 +340,7 @@
 			knownRegions = (
 				en,
 				fr,
+				it,
 			);
 			mainGroup = E039FD3F192C290E00BA0B76;
 			productRefGroup = E039FD49192C290E00BA0B76 /* Products */;
@@ -357,6 +362,7 @@
 				E039FD56192C290E00BA0B76 /* InfoPlist.strings in Resources */,
 				E039FD5E192C290E00BA0B76 /* Images.xcassets in Resources */,
 				E039FD95192C521B00BA0B76 /* Storyboard.storyboard in Resources */,
+				E059155019EE0F63002E358C /* Launch Screen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +416,7 @@
 			children = (
 				E0245EA41964F229008F163B /* en */,
 				E0245EA71964F243008F163B /* fr */,
+				E059154E19EE0EFA002E358C /* it */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
