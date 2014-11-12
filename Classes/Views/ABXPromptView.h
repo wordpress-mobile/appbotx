@@ -19,6 +19,8 @@
 @interface ABXPromptView : UIView
 
 @property (weak) id<ABXPromptViewDelegate> delegate;
+@property (nonatomic, strong) UIButton *leftButton;
+@property (nonatomic, strong) UIButton *rightButton;
 
 + (BOOL)hasHadInteractionForCurrentVersion;
 

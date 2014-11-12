@@ -15,8 +15,6 @@
 @property (nonatomic, strong) UIView *container;
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UIButton *closeButton;
-@property (nonatomic, strong) UIButton *leftButton;
-@property (nonatomic, strong) UIButton *rightButton;
 
 @property (nonatomic, assign) BOOL step2;
 @property (nonatomic, assign) BOOL liked;
