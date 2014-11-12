@@ -63,7 +63,8 @@
     
     self.leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.leftButton.frame = CGRectMake(CGRectGetMidX(self.container.bounds) - 135, 50, 130, 30);
-    self.leftButton.backgroundColor = [UIColor colorWithWhite:0.6 alpha:1];
+    self.leftButton.backgroundColor = [UIColor colorWithRed:240/255.0f green:130/255.0f blue:30/255.0f alpha:1.0f];
+
     self.leftButton.layer.cornerRadius = 4;
     self.leftButton.layer.masksToBounds = YES;
     [self.leftButton setTitle:[@"I Love It!" localizedString] forState:UIControlStateNormal];
@@ -74,7 +75,7 @@
     
     self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.rightButton.frame = CGRectMake(CGRectGetMidX(self.container.bounds) + 5, 50, 130, 30);
-    self.rightButton.backgroundColor = [UIColor colorWithWhite:0.6 alpha:1];
+    self.rightButton.backgroundColor = [UIColor colorWithRed:240/255.0f green:130/255.0f blue:30/255.0f alpha:1.0f];
     self.rightButton.layer.cornerRadius = 4;
     self.rightButton.layer.masksToBounds = YES;
     [self.rightButton setTitle:[@"Could Be Better" localizedString] forState:UIControlStateNormal];
