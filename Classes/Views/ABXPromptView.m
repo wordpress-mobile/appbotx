@@ -13,7 +13,6 @@
 @interface ABXPromptView ()
 
 @property (nonatomic, strong) UIView *container;
-@property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UIButton *closeButton;
 
 @property (nonatomic, assign) BOOL step2;
