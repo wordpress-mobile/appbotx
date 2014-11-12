@@ -67,7 +67,7 @@
 
     self.leftButton.layer.cornerRadius = 4;
     self.leftButton.layer.masksToBounds = YES;
-    [self.leftButton setTitle:[@"I Love It!" localizedString] forState:UIControlStateNormal];
+    [self.leftButton setTitle:[@"I Like It" localizedString] forState:UIControlStateNormal];
     [self.leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.leftButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [self.leftButton addTarget:self action:@selector(onLove) forControlEvents:UIControlEventTouchUpInside];
