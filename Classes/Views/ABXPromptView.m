@@ -63,7 +63,7 @@
     
     self.leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.leftButton.frame = CGRectMake(CGRectGetMidX(self.container.bounds) - 135, 50, 130, 30);
-    self.leftButton.backgroundColor = [UIColor colorWithRed:240/255.0f green:130/255.0f blue:30/255.0f alpha:1.0f];
+    self.leftButton.backgroundColor = [UIColor colorWithRed:0/255.0f green:170/255.0f blue:220/255.0f alpha:1.0f];
 
     self.leftButton.layer.cornerRadius = 4;
     self.leftButton.layer.masksToBounds = YES;
@@ -75,12 +75,13 @@
     
     self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.rightButton.frame = CGRectMake(CGRectGetMidX(self.container.bounds) + 5, 50, 130, 30);
-    self.rightButton.backgroundColor = [UIColor colorWithRed:240/255.0f green:130/255.0f blue:30/255.0f alpha:1.0f];
+    self.rightButton.backgroundColor = [UIColor colorWithRed:144/255.0f green:174/255.0f blue:194/255.0f alpha:1.0f];
     self.rightButton.layer.cornerRadius = 4;
     self.rightButton.layer.masksToBounds = YES;
     [self.rightButton setTitle:[@"Could Be Better" localizedString] forState:UIControlStateNormal];
     [self.rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.rightButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    self.rightButton.titleLabel.textColor = [UIColor colorWithRed:50/255.0f green:65/255.0f blue:85/255.0f alpha:1.0f];
     [self.rightButton addTarget:self action:@selector(onImprove) forControlEvents:UIControlEventTouchUpInside];
     [self.container addSubview:self.rightButton];
 }
