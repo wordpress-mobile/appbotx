@@ -51,7 +51,7 @@
     self.container.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     
     self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.container.bounds), 52)];
-    self.label.textColor = [UIColor colorWithWhite:0.1 alpha:1];
+    self.label.textColor = [UIColor colorWithRed:50/255.0f green:65/255.0f blue:85/255.0f alpha:1.0f];
     self.label.textAlignment = NSTextAlignmentCenter;
     self.label.numberOfLines = 0;
     self.label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
