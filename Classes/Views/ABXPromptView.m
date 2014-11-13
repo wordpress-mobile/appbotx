@@ -55,7 +55,8 @@
     self.label.textAlignment = NSTextAlignmentCenter;
     self.label.numberOfLines = 0;
     self.label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
-    self.label.text = [[[@"What do you think about " localizedString] stringByAppendingString:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]] stringByAppendingString:@"?"];
+    
+    self.label.text = NSLocalizedString(@"What do you think about WordPress?", @"This is the string we display when prompting the user to review the app");
     [self.container addSubview:self.label];
     
     self.leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -64,7 +65,7 @@
 
     self.leftButton.layer.cornerRadius = 4;
     self.leftButton.layer.masksToBounds = YES;
-    [self.leftButton setTitle:[@"I Like It" localizedString] forState:UIControlStateNormal];
+    [self.leftButton setTitle:NSLocalizedString(@"I Like It", @"This is one of the buttons we display inside of the prompt to review the app") forState:UIControlStateNormal];
     [self.leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.leftButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [self.leftButton addTarget:self action:@selector(onLove) forControlEvents:UIControlEventTouchUpInside];
@@ -75,7 +76,7 @@
     self.rightButton.backgroundColor = [UIColor colorWithRed:144/255.0f green:174/255.0f blue:194/255.0f alpha:1.0f];
     self.rightButton.layer.cornerRadius = 4;
     self.rightButton.layer.masksToBounds = YES;
-    [self.rightButton setTitle:[@"Could Be Better" localizedString] forState:UIControlStateNormal];
+    [self.rightButton setTitle:NSLocalizedString(@"Could Be Better", @"This is one of the buttons we display inside of the prompt to review the app") forState:UIControlStateNormal];
     [self.rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.rightButton.titleLabel.font = [UIFont systemFontOfSize:15];
     self.rightButton.titleLabel.textColor = [UIColor colorWithRed:50/255.0f green:65/255.0f blue:85/255.0f alpha:1.0f];
@@ -101,9 +102,9 @@
         self.step2 = YES;
         [UIView animateWithDuration:0.3
                          animations:^{
-                             self.label.text = [@"Great! Could you leave us a nice review?\r\nIt really helps."  localizedString];
-                             [self.leftButton setTitle:[@"Leave a Review" localizedString] forState:UIControlStateNormal];
-                             [self.rightButton setTitle:[[@"no thanks" localizedString] capitalizedString] forState:UIControlStateNormal];
+                             self.label.text = NSLocalizedString(@"Great! Could you leave us a nice review?\r\nIt really helps.", @"This is the text we display to the user when we ask them for a review and they've indicated they like the app");
+                             [self.leftButton setTitle:NSLocalizedString(@"Leave a Review", @"This is one of the buttons we display when prompting the user for a review")forState:UIControlStateNormal];
+                             [self.rightButton setTitle:NSLocalizedString(@"No Thanks", @"This is one of the buttons we display when prompting the user for a review") forState:UIControlStateNormal];
                          }];
     }
 }
@@ -121,8 +122,9 @@
         self.step2 = YES;
         [UIView animateWithDuration:0.3
                          animations:^{
-                             self.label.text = [@"Could you tell us how we could improve?" localizedString];
-                             [self.leftButton setTitle:[@"Send Feedback" localizedString] forState:UIControlStateNormal];                         [self.rightButton setTitle:[[@"no thanks" localizedString] capitalizedString] forState:UIControlStateNormal];
+                             self.label.text = NSLocalizedString(@"Could you tell us how we could improve?", @"This is the text we display to the user when we ask them for a review and they've indicated they don't like the app");
+                             [self.leftButton setTitle:NSLocalizedString(@"Send Feedback", @"This is one of the buttons we display when prompting the user for a review") forState:UIControlStateNormal];
+                             [self.rightButton setTitle:NSLocalizedString(@"No Thanks", @"This is one of the buttons we display when prompting the user for a review") forState:UIControlStateNormal];
                          }];
     }
 }

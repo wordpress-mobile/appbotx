@@ -57,7 +57,7 @@ static NSInteger const kCloseAlert = 1;
     [self.view addSubview:scrollView];
     
     // Email label
-    NSString *promptText = [@"Your Email:" localizedString];
+    NSString *promptText = NSLocalizedString(@"Your Email:", @"The label we display in the feedback view that is brought up when the user doesn't like our app and they've indicated they want to give feedback");
     UIFont *promptFont = [UIFont systemFontOfSize:15];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, [promptText widthToFitFont:promptFont], 50)];
     label.textColor = [UIColor grayColor];
@@ -72,7 +72,7 @@ static NSInteger const kCloseAlert = 1;
         tfRect = CGRectMake(labelWidth + 25, 15, CGRectGetWidth(self.view.frame) - labelWidth - 30, 31);
     }
     UITextField *textField = [[UITextField alloc] initWithFrame:tfRect];
-    textField.placeholder = [@"Email Placeholder" localizedString];
+    textField.placeholder = NSLocalizedString(@"Email Placeholder", @"Placeholder text we display in the feedback view that is brought up when the user doesn't like our app and they've indicated they want to give feedback");
     textField.font = [UIFont systemFontOfSize:15];
     textField.keyboardType = UIKeyboardTypeEmailAddress;
     textField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -92,7 +92,7 @@ static NSInteger const kCloseAlert = 1;
     self.textView = [[ABXTextView alloc] initWithFrame:CGRectMake(15, 51, CGRectGetWidth(self.view.frame) - 30, CGRectGetHeight(self.view.frame) - 51)];
     self.textView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.textView.font = [UIFont systemFontOfSize:15];
-    self.textView.placeholder = self.placeholder ?: [@"How can we help?" localizedString];
+    self.textView.placeholder = self.placeholder ?: NSLocalizedString(@"How can we help?", @"This is text that appears in the feedback view that we display when we prompt the user for an app review and they've indicated they don't like it and want to give us feedback");
     self.textView.delegate = self;
     [scrollView addSubview:self.textView];
     
@@ -103,7 +103,7 @@ static NSInteger const kCloseAlert = 1;
     
     // Attachment button
     self.attachmentsButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self.attachmentsButton setTitle:[@"attach a file" localizedString] forState:UIControlStateNormal];
+    [self.attachmentsButton setTitle:NSLocalizedString(@"attach a file", @"This is text we display in the feedback view that we display when we prompt the user for an app review and they've indicated they don't like it and want to give us feedback. Tapping on this 'button' will pull up the photo browser so they can attach a photo") forState:UIControlStateNormal];
     CGFloat width = [[self.attachmentsButton titleForState:UIControlStateNormal] widthToFitFont:self.attachmentsButton.titleLabel.font];
     if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] == NSOrderedAscending) {
         self.attachmentsButton.frame = CGRectMake(CGRectGetWidth(self.attachmentsView.frame) - width - 10, 6, width + 20, 32);
@@ -126,7 +126,7 @@ static NSInteger const kCloseAlert = 1;
     [self.attachmentsView addSubview:self.attachmentsImageView];
     
     // Title
-    self.title = [@"Contact" localizedString];
+    self.title = NSLocalizedString(@"Contact", @"This is text that appears in the feedback view that we display when we prompt the user for an app review and they've indicated they don't like it and want to give us feedback");
     
     // Buttons
     [self showButtons];
@@ -146,9 +146,9 @@ static NSInteger const kCloseAlert = 1;
     // Warn if there is no internet connection
     if (![ABXApiClient isInternetReachable]) {
         [[[UIAlertView alloc] initWithTitle:nil
-                                    message:[@"No Internet" localizedString]
+                                    message:NSLocalizedString(@"No Internet", @"Text that appears in an alert to the user when there is no internet")
                                    delegate:nil
-                          cancelButtonTitle:[@"OK" localizedString]
+                          cancelButtonTitle:NSLocalizedString(@"OK", @"")
                           otherButtonTitles:nil] show];
     }
 }
@@ -235,7 +235,7 @@ static NSInteger const kCloseAlert = 1;
     }
     
     if (self.textView.text.length > 0 && self.navigationItem.rightBarButtonItem == nil) {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[@"Send" localizedString]
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Send", @"")
                                                                                   style:UIBarButtonItemStyleDone
                                                                                  target:self
                                                                                  action:@selector(onSend)];
@@ -249,11 +249,11 @@ static NSInteger const kCloseAlert = 1;
 {
     if (self.textView.text.length > 0) {
         // Prompt to ensure they want to close
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[@"Are you sure?" localizedString]
-                                                        message:[@"Your message will be lost." localizedString]
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure?", @"Title for prompt when user tries to close the feedback view")
+                                                        message:NSLocalizedString(@"Your message will be lost.", @"Message for prompt when user tries to close feedback view after having entered text")
                                                        delegate:self
-                                              cancelButtonTitle:[@"Cancel" localizedString]
-                                              otherButtonTitles:[@"Close" localizedString], nil];
+                                              cancelButtonTitle:NSLocalizedString(@"Cancel",@"")
+                                              otherButtonTitles:NSLocalizedString(@"Close", @""), nil];
         alert.tag = kCloseAlert;
         [alert show];
     }
@@ -288,30 +288,30 @@ static NSInteger const kCloseAlert = 1;
     if (self.textView.text.length == 0) {
         // Needs a body
         [self.textView becomeFirstResponder];
-        [[[UIAlertView alloc] initWithTitle:[@"No Message." localizedString]
-                                    message:[@"Please enter a message." localizedString]
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Message.", @"Title for message when user tries to send feedback without any text")
+                                    message:NSLocalizedString(@"Please enter a message.", @"Message for alert when user tires to send feedback without any text")
                                    delegate:nil
-                          cancelButtonTitle:[@"OK" localizedString]
+                          cancelButtonTitle:NSLocalizedString(@"OK", @"")
                           otherButtonTitles:nil] show];
         
     }
     else if (self.textField.text.length == 0) {
         // Ensure they want to submit without an email
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:[@"No Email." localizedString]
-                                    message:[@"Are you sure you want to send without your email? We won't be able reply to you." localizedString]
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Email.", @"Title for alert when user tires to send feedback without an email address")
+                                    message:NSLocalizedString(@"Are you sure you want to send without your email? We won't be able reply to you.", @"Message for alert when user tries to send feedback without an email address")
                                    delegate:self
-                          cancelButtonTitle:[@"Cancel" localizedString]
-                                               otherButtonTitles:[@"Send" localizedString], nil];
+                          cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+                                               otherButtonTitles:NSLocalizedString(@"Send", @""), nil];
         alert.tag = kEmailAlert;
         [alert show];
     }
     else if (![self validateEmail]) {
         // Invalid email
         [self.textField becomeFirstResponder];
-        [[[UIAlertView alloc] initWithTitle:[@"Invalid Email Address." localizedString]
-                                    message:[@"Please check your email address, it appears to be invalid." localizedString]
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Invalid Email Address.", @"Title for alert that a user has entered an invalid email address")
+                                    message:NSLocalizedString(@"Please check your email address, it appears to be invalid.", @"Message for alert that user has entered an invalid email address")
                                    delegate:nil
-                          cancelButtonTitle:[@"OK" localizedString]
+                          cancelButtonTitle:NSLocalizedString(@"OK",@"")
                           otherButtonTitles:nil] show];
     }
     else {
@@ -383,7 +383,7 @@ static NSInteger const kCloseAlert = 1;
     UILabel *label = [[UILabel alloc] initWithFrame:content.bounds];
     label.center = CGPointMake(CGRectGetMidX(content.bounds), CGRectGetMidY(content.bounds) + 30);
     label.textColor = [UIColor whiteColor];
-    label.text = [@"Sending..." localizedString];
+    label.text = NSLocalizedString(@"Sending...", @"Label that is shown when feedback from the user is sending");
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:15];
     label.backgroundColor = [UIColor clearColor];
@@ -415,10 +415,10 @@ static NSInteger const kCloseAlert = 1;
                         break;
                         
                     default: {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[@"Error" localizedString]
-                                                                        message:[@"There was an error sending your feedback, please try again." localizedString]
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
+                                                                        message:NSLocalizedString(@"There was an error sending your feedback, please try again.", @"")
                                                                        delegate:nil
-                                                              cancelButtonTitle:[@"Cancel" localizedString]
+                                                              cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
                                                               otherButtonTitles:nil];
                         [alert show];
                         [self showButtons];
@@ -431,10 +431,10 @@ static NSInteger const kCloseAlert = 1;
 
 - (void)showConfirm
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[@"Thanks" localizedString]
-                                                    message:[@"We have received your feedback and will be in contact soon." localizedString]
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Thanks", @"")
+                                                    message:NSLocalizedString(@"We have received your feedback and will be in contact soon.", @"")
                                                    delegate:nil
-                                          cancelButtonTitle:[@"OK" localizedString]
+                                          cancelButtonTitle:NSLocalizedString(@"OK", @"")
                                           otherButtonTitles:nil];
     [alert show];
 }
@@ -477,11 +477,11 @@ static NSInteger const kCloseAlert = 1;
     sheet.title = nil;
     sheet.delegate = self;
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        [sheet addButtonWithTitle:[@"Take Photo" localizedString]];
+        [sheet addButtonWithTitle:NSLocalizedString(@"Take Photo", @"")];
     }
-    [sheet addButtonWithTitle:[@"Choose Photo" localizedString]];
-    [sheet addButtonWithTitle:[@"Use Latest Photo" localizedString]];
-    sheet.cancelButtonIndex = [sheet addButtonWithTitle:[@"Cancel" localizedString]];
+    [sheet addButtonWithTitle:NSLocalizedString(@"Choose Photo", @"")];
+    [sheet addButtonWithTitle:NSLocalizedString(@"Use Latest Photo", @"")];
+    sheet.cancelButtonIndex = [sheet addButtonWithTitle:NSLocalizedString(@"Cancel", @"")];
     [sheet showFromRect:button.frame inView:button.superview animated:YES];
 }
 
@@ -562,10 +562,10 @@ static NSInteger const kCloseAlert = 1;
             *stop = YES;
         }
     } failureBlock:^(NSError *error) {
-        [[[UIAlertView alloc] initWithTitle:[@"Can't Access." localizedString]
-                                    message:[@"We can't access your photos, please ensure this application has access in Settings." localizedString]
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Can't Access.", @"")
+                                    message:NSLocalizedString(@"We can't access your photos, please ensure this application has access in Settings.", @"")
                                    delegate:nil
-                          cancelButtonTitle:[@"OK" localizedString]
+                          cancelButtonTitle:NSLocalizedString(@"OK", @"")
                           otherButtonTitles:nil] show];
     }];
 }
@@ -583,10 +583,10 @@ static NSInteger const kCloseAlert = 1;
     [self.attachment upload:^(ABXResponseCode responseCode, NSInteger httpCode, NSError *error) {
         if (self.attachment.identifier == nil) {
             self.attachment = nil;
-            [[[UIAlertView alloc] initWithTitle:[@"Error uploading." localizedString]
-                                        message:[@"We couldn't upload the photo, please try again." localizedString]
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error uploading.", @"")
+                                        message:NSLocalizedString(@"We couldn't upload the photo, please try again.", @"")
                                        delegate:nil
-                              cancelButtonTitle:[@"OK" localizedString]
+                              cancelButtonTitle:NSLocalizedString(@"OK", @"")
                               otherButtonTitles:nil] show];
             self.attachmentsButton.hidden = NO;
             [self showButtons];
