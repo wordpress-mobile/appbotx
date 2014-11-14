@@ -96,7 +96,8 @@
 - (void)onContact
 {
     [ABXFeedbackViewController showFromController:self
-                                      placeholder:[@"How can we help?" localizedString]];
+                                      placeholder:[@"How can we help?" localizedString]
+                                         delegate:nil];
 }
 
 #pragma mark - UI

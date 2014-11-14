@@ -130,7 +130,8 @@
                                       placeholder:[@"How can we help?" localizedString]
                                             email:nil
                                          metaData:self.contactMetaData
-                                            image:nil];
+                                            image:nil
+                                         delegate:nil];
 }
 
 #pragma mark - UITableViewDataSource

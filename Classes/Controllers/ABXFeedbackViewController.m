@@ -29,6 +29,7 @@
 @property (nonatomic, strong) UIButton *attachmentsButton;
 @property (nonatomic, strong) UIImageView *attachmentsImageView;
 @property (nonatomic, strong) ABXAttachment *attachment;
+@property (nonatomic, weak) id<ABXFeedbackViewControllerDelegate>delegate;
 
 @property (nonatomic, assign) BOOL sending;
 
@@ -158,11 +159,13 @@ static NSInteger const kCloseAlert = 1;
                      email:(NSString*)email
                   metaData:(NSDictionary*)metaData
                      image:(UIImage*)image
+                  delegate:(id<ABXFeedbackViewControllerDelegate>)delegate;
 {
     ABXFeedbackViewController *viewController = [[self alloc] init];
     viewController.placeholder = placeholder;
     viewController.defaultEmail = email;
     viewController.metaData = metaData;
+    viewController.delegate = delegate;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         // Show as a sheet on iPad
@@ -176,9 +179,9 @@ static NSInteger const kCloseAlert = 1;
     }
 }
 
-+ (void)showFromController:(UIViewController*)controller placeholder:(NSString*)placeholder
++ (void)showFromController:(UIViewController*)controller placeholder:(NSString*)placeholder delegate:(id<ABXFeedbackViewControllerDelegate>)delegate
 {
-    [self showFromController:controller placeholder:placeholder email:nil metaData:nil image:nil];
+    [self showFromController:controller placeholder:placeholder email:nil metaData:nil image:nil delegate:delegate];
 }
 
 #pragma mark - Keyboard
@@ -258,6 +261,9 @@ static NSInteger const kCloseAlert = 1;
         [alert show];
     }
     else {
+        if (self.delegate != nil) {
+            [self.delegate abxFeedbackDidntSendFeedback];
+        }
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
@@ -337,6 +343,9 @@ static NSInteger const kCloseAlert = 1;
             
         case kCloseAlert: {
             if (buttonIndex == 1) {
+                if (self.delegate != nil) {
+                    [self.delegate abxFeedbackDidntSendFeedback];
+                }
                 [self.navigationController dismissViewControllerAnimated:YES completion:nil];
             }
         }
@@ -431,6 +440,9 @@ static NSInteger const kCloseAlert = 1;
 
 - (void)showConfirm
 {
+    if (self.delegate != nil) {
+        [self.delegate abxFeedbackDidSendFeedback];
+    }
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Thanks", @"")
                                                     message:NSLocalizedString(@"We have received your feedback and will be in contact soon.", @"")
                                                    delegate:nil
