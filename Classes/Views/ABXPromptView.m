@@ -98,6 +98,7 @@
         }
     }
     else {
+        [self.delegate appbotPromptLiked];
         self.liked = YES;
         self.step2 = YES;
         [UIView animateWithDuration:0.3
@@ -118,6 +119,7 @@
         }
     }
     else {
+        [self.delegate appbotPromptDidntLike];
         self.liked = NO;
         self.step2 = YES;
         [UIView animateWithDuration:0.3

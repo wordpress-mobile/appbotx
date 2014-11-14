@@ -10,6 +10,8 @@
 
 @protocol ABXPromptViewDelegate <NSObject>
 
+- (void)appbotPromptLiked;
+- (void)appbotPromptDidntLike;
 - (void)appbotPromptForReview;
 - (void)appbotPromptForFeedback;
 - (void)appbotPromptClose;

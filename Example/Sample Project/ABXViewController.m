@@ -175,4 +175,14 @@ static NSString* const kiTunesID = @"650762525";
     self.promptView.hidden = YES;
 }
 
+- (void)appbotPromptLiked
+{
+    
+}
+
+- (void)appbotPromptDidntLike
+{
+    
+}
+
 @end
