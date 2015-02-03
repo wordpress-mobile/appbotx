@@ -73,7 +73,7 @@ static NSInteger const kCloseAlert = 1;
         tfRect = CGRectMake(labelWidth + 25, 15, CGRectGetWidth(self.view.frame) - labelWidth - 30, 31);
     }
     UITextField *textField = [[UITextField alloc] initWithFrame:tfRect];
-    textField.placeholder = NSLocalizedString(@"Email Placeholder", @"Placeholder text we display in the feedback view that is brought up when the user doesn't like our app and they've indicated they want to give feedback");
+    textField.placeholder = NSLocalizedString(@"Email Address", @"Placeholder text we display in the feedback view that is brought up when the user doesn't like our app and they've indicated they want to give feedback");
     textField.font = [UIFont systemFontOfSize:15];
     textField.keyboardType = UIKeyboardTypeEmailAddress;
     textField.autocorrectionType = UITextAutocorrectionTypeNo;
