@@ -80,7 +80,7 @@ static NSString* const kiTunesID = @"650762525";
                 break;
                 
             default: {
-                [self showAlert:@"Versions" message:[NSString stringWithFormat:@"%u", responseCode]];
+                [self showAlert:@"Versions" message:[NSString stringWithFormat:@"%lu", (unsigned long)responseCode]];
             }
                 break;
         }
@@ -111,7 +111,7 @@ static NSString* const kiTunesID = @"650762525";
                 break;
                 
             default: {
-                [self showAlert:@"FAQs" message:[NSString stringWithFormat:@"%u", responseCode]];
+                [self showAlert:@"FAQs" message:[NSString stringWithFormat:@"%lu", (unsigned long)responseCode]];
             }
                 break;
         }
