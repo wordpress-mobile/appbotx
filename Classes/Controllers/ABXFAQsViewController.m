@@ -142,7 +142,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.filteredFaqs.count;
+    return (NSInteger)self.filteredFaqs.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -154,8 +154,8 @@
         cell = [[ABXFAQTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    if (indexPath.row < self.filteredFaqs.count) {
-        [cell setFAQ:[self.filteredFaqs objectAtIndex:indexPath.row]];
+    if (indexPath.row >= 0 && (NSUInteger)indexPath.row < self.filteredFaqs.count) {
+        [cell setFAQ:[self.filteredFaqs objectAtIndex:(NSUInteger)indexPath.row]];
     }
     
     return cell;
@@ -163,8 +163,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row < self.filteredFaqs.count) {
-        return [ABXFAQTableViewCell heightForFAQ:[self.filteredFaqs objectAtIndex:indexPath.row]
+    if (indexPath.row >= 0 && (NSUInteger)indexPath.row < self.filteredFaqs.count) {
+        return [ABXFAQTableViewCell heightForFAQ:[self.filteredFaqs objectAtIndex:(NSUInteger)indexPath.row]
                                        withWidth:CGRectGetWidth(self.tableView.bounds)];
     }
     
@@ -177,7 +177,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.row < self.filteredFaqs.count) {
+    if (indexPath.row >= 0 && (NSUInteger)indexPath.row < self.filteredFaqs.count) {
         // Fix weird keyboard transition lag in iOS 7
         if ([self.searchBar isFirstResponder]) {
             [self.searchBar resignFirstResponder];
@@ -185,7 +185,7 @@
         
         // Show the details
         [ABXFAQViewController pushOnNavController:self.navigationController
-                                              faq:self.filteredFaqs[indexPath.row]
+                                              faq:self.filteredFaqs[(NSUInteger)indexPath.row]
                                 hideContactButton:self.hideContactButton];
     }
 }

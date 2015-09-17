@@ -474,7 +474,6 @@ static NSInteger const kCloseAlert = 1;
 - (void)onAttachment:(UIButton*)button
 {
     UIActionSheet *sheet = [[UIActionSheet alloc] init];
-    sheet.title = nil;
     sheet.delegate = self;
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         [sheet addButtonWithTitle:[@"Take Photo" localizedString]];

@@ -36,7 +36,7 @@
                         lineBreakMode:UILineBreakModeWordWrap];
 #endif
     
-    return ceilf(size.height);
+    return ceil(size.height);
 }
 
 - (CGFloat)widthToFitFont:(UIFont*)font
@@ -66,7 +66,7 @@
                 lineBreakMode:UILineBreakByTruncatingTail];
 #endif
     
-    return ceilf(size.width);
+    return ceil(size.width);
 }
 
 @end

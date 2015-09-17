@@ -60,7 +60,7 @@ static NSString *kAppbotUrl = @"https://api.appbot.co/v1";
         _queue.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount;
         
         // Setup our session
-        self.session = [NSURLSession sessionWithConfiguration:nil delegate:nil delegateQueue:_queue];
+        self.session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:_queue];
     }
     return self;
 }
