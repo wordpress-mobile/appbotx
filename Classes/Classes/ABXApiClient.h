@@ -5,10 +5,10 @@
 //  Copyright (c) 2014 Appbot. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import UIKit;
 
 // Error codes
-typedef enum {
+typedef NS_ENUM(NSUInteger, ABXResponseCode) {
     ABXResponseCodeSuccess,       // Request completed successfully
     ABXResponseCodeErrorAuth,     // Check your bundle identifier and API key
     ABXResponseCodeErrorExpired,  // Account requires payment
@@ -16,7 +16,7 @@ typedef enum {
     ABXResponseCodeErrorEncoding, // Error encoding the post/put request
     ABXResponseCodeErrorNotFound, // Not found
     ABXResponseCodeErrorUnknown   // Unknown error
-} ABXResponseCode;
+};
 
 typedef void (^ABXRequestCompletion)(ABXResponseCode responseCode, NSInteger httpCode, NSError *error, id JSON);
 

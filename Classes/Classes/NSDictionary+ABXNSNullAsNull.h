@@ -5,7 +5,7 @@
 //  Copyright (c) 2014 Appbot. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface NSDictionary (ABXNSNullAsNull)
 
