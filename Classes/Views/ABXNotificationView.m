@@ -38,7 +38,7 @@
     UIFont *font = [UIFont systemFontOfSize:15];
     CGFloat labelHeight = [text heightForWidth:kMaxWidth andFont:font];
     
-    NSUInteger topPadding = [self topOffsetForController:controller];
+    NSInteger topPadding = [self topOffsetForController:controller];
     
     // Create the view
     CGFloat totalHeight = labelHeight + 50 + topPadding;
@@ -90,9 +90,8 @@
     // Slide it down
     [UIView animateWithDuration:0.3
                      animations:^{
-                         CGFloat topPadding = 0;
                          CGRect r = view.frame;
-                         r.origin.y = topPadding;
+                         r.origin.y = 0;
                          view.frame = r;
                      }];
     
@@ -139,7 +138,7 @@
         // Determine the navigation bar size
         CGFloat navbarHeight = CGRectGetHeight(controller.navigationController.navigationBar.frame);
         
-        return CGRectGetHeight(statusBarViewRect) + navbarHeight;
+        return (NSInteger)round(CGRectGetHeight(statusBarViewRect) + navbarHeight);
     }
     return 0;
 }

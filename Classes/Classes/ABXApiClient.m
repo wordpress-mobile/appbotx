@@ -136,7 +136,7 @@ static NSString *kAppbotUrl = @"https://api.appbot.co/v1";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:[NSString stringWithFormat:@"application/json; charset=%@", charset] forHTTPHeaderField:@"Content-Type"];
     NSError *error = nil;
-    [request setHTTPBody:[NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error]];
+    [request setHTTPBody:[NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error]];
     if (error) {
         // Error setting the HTTP body
         if (complete) {
@@ -192,7 +192,7 @@ static NSString *kAppbotUrl = @"https://api.appbot.co/v1";
     
     if (data != nil && data.length > 0) {
         json = [NSJSONSerialization JSONObjectWithData:data
-                                               options:0
+                                               options:NSJSONReadingMutableContainers
                                                  error:&jsonError];
     }
     

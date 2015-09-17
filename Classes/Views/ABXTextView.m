@@ -65,17 +65,17 @@
 	if (self.text.length == 0 && self.placeholder) {
         self.didDrawPlaceholder = YES;
         if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending) {
-            CGRect rect = CGRectInset(self.bounds, 4, 8);
-            [self.placeholder drawInRect:rect
+            CGRect r = CGRectInset(self.bounds, 4, 8);
+            [self.placeholder drawInRect:r
                           withAttributes:@{ NSFontAttributeName : self.font,
-                                            NSForegroundColorAttributeName : [UIColor colorWithWhite:0.8 alpha:1]}];
+                                            NSForegroundColorAttributeName : [UIColor colorWithWhite:0.8f alpha:1]}];
         }
         else {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated"
-            CGRect rect = CGRectInset(self.bounds, 8, 8);
-            [[UIColor colorWithWhite:0.8 alpha:1] set];
-            [self.placeholder drawInRect:rect withFont:self.font];
+            CGRect r = CGRectInset(self.bounds, 8, 8);
+            [[UIColor colorWithWhite:0.8f alpha:1] set];
+            [self.placeholder drawInRect:r withFont:self.font];
 #pragma clang diagnostic pop            
         }
 	}

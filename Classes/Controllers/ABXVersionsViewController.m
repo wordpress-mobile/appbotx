@@ -76,7 +76,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.versions.count;
+    return (NSInteger)self.versions.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -88,8 +88,8 @@
         cell = [[ABXVersionTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    if (indexPath.row < self.versions.count) {
-        [cell setVersion:self.versions[indexPath.row]];
+    if (indexPath.row < (NSInteger)self.versions.count) {
+        [cell setVersion:self.versions[(NSUInteger)indexPath.row]];
     }
     
     return cell;
@@ -97,8 +97,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row < self.versions.count) {
-        return [ABXVersionTableViewCell heightForVersion:self.versions[indexPath.row]
+    if (indexPath.row < (NSInteger)self.versions.count) {
+        return [ABXVersionTableViewCell heightForVersion:self.versions[(NSUInteger)indexPath.row]
                                                withWidth:CGRectGetWidth(self.tableView.frame)];
     }
     return 0;

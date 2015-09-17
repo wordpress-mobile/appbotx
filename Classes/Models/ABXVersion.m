@@ -96,19 +96,19 @@ PROTECTED_ABXMODEL
                                        if (results && [results isKindOfClass:[NSDictionary class]]) {
                                            // Convert into objects
                                            ABXVersion *version = nil;
-                                           ABXVersion *currentVersion = nil;
+                                           ABXVersion *currentV = nil;
                                            
                                            if ([results objectForKeyNulled:@"version"]) {
                                                version = [self createWithAttributes:[results objectForKeyNulled:@"version"]];
                                            }
                                            
                                            if ([results objectForKeyNulled:@"current_version"]) {
-                                               currentVersion = [self createWithAttributes:[results objectForKeyNulled:@"current_version"]];
+                                               currentV = [self createWithAttributes:[results objectForKeyNulled:@"current_version"]];
                                            }
                                            
                                            // Success!
                                            if (complete) {
-                                               complete(version, currentVersion, responseCode, httpCode, error);
+                                               complete(version, currentV, responseCode, httpCode, error);
                                            }
                                        }
                                        else {
@@ -155,13 +155,13 @@ PROTECTED_ABXMODEL
                                if (data) {
                                    NSError *jsonError;
                                    NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data
-                                                                                          options:0
+                                                                                          options:NSJSONReadingMutableContainers
                                                                                             error:&jsonError];
                                    if (!jsonError && [result isKindOfClass:[NSDictionary class]]) {
                                        NSArray *results = [result objectForKey:@"results"];
                                        if ([results isKindOfClass:[NSArray class]] && results.count > 0) {
-                                           NSDictionary *result = [results firstObject];
-                                           NSString *storeVersion = [result objectForKey:@"version"];
+                                           NSDictionary *r = [results firstObject];
+                                           NSString *storeVersion = [r objectForKey:@"version"];
                                            if (complete && [storeVersion isKindOfClass:[NSString class]]) {
                                                complete([storeVersion isEqualToString:self.version]);
                                                return;

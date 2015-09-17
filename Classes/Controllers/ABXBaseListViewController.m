@@ -67,7 +67,7 @@
     // Powered by
     UIButton *appbotButton = [UIButton buttonWithType:UIButtonTypeCustom];
     appbotButton.frame = CGRectMake(0, CGRectGetHeight(self.view.frame) - 33, CGRectGetWidth(self.view.frame), 33);
-    appbotButton.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
+    appbotButton.backgroundColor = [UIColor colorWithWhite:0.95f alpha:1];
     [appbotButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [appbotButton setTitle:[[@"Powered by" localizedString] stringByAppendingString:@" Appbot"] forState:UIControlStateNormal];
     appbotButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
@@ -78,7 +78,7 @@
     // Powered by seperator
     UIView *seperator = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) - 33, CGRectGetWidth(self.view.frame), 1)];
     seperator.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-    seperator.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
+    seperator.backgroundColor = [UIColor colorWithWhite:0.8f alpha:1];
     [self.view addSubview:seperator];
     
     // Activity Indicator

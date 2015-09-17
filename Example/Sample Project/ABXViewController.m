@@ -61,7 +61,7 @@ static NSString* const kiTunesID = @"650762525";
 - (IBAction)onFetchNotifications:(id)sender
 {
     [ABXNotificationView fetchAndShowInController:self
-                                  backgroundColor:[UIColor colorWithRed:0x86/255.0 green:0xcc/255.0 blue:0xf1/255.0 alpha:1]
+                                  backgroundColor:[UIColor colorWithRed:0x86/255.0f green:0xcc/255.0f blue:0xf1/255.0f alpha:1]
                                         textColor:[UIColor blackColor]
                                       buttonColor:[UIColor whiteColor]
                                          complete:^(BOOL shown) {
@@ -92,7 +92,7 @@ static NSString* const kiTunesID = @"650762525";
     // This is a convenient wrapper, or dig in and control it yourself
     [ABXVersionNotificationView fetchAndShowInController:self
                                              foriTunesID:kiTunesID
-                                         backgroundColor:[UIColor colorWithRed:0xf4/255.0 green:0x7d/255.0 blue:0x67/255.0 alpha:1]
+                                         backgroundColor:[UIColor colorWithRed:0xf4/255.0f green:0x7d/255.0f blue:0x67/255.0f alpha:1]
                                                textColor:[UIColor blackColor]
                                              buttonColor:[UIColor whiteColor]
                                                 complete:^(BOOL shown) {

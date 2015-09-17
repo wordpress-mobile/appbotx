@@ -16,7 +16,7 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
     if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending) {
         size = [self boundingRectWithSize:constraintSize
-                                             options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
+                                             options:NSStringDrawingUsesLineFragmentOrigin
                                           attributes:@{NSFontAttributeName:font}
                                              context:nil].size;
     }
@@ -36,7 +36,7 @@
                         lineBreakMode:UILineBreakModeWordWrap];
 #endif
     
-    return ceil(size.height);
+    return ceilf(size.height);
 }
 
 - (CGFloat)widthToFitFont:(UIFont*)font
@@ -46,7 +46,7 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
     if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending) {
         size = [self boundingRectWithSize:constraintSize
-                                  options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
+                                  options:NSStringDrawingUsesLineFragmentOrigin
                                attributes:@{NSFontAttributeName:font}
                                   context:nil].size;
     }
@@ -66,7 +66,7 @@
                 lineBreakMode:UILineBreakByTruncatingTail];
 #endif
     
-    return ceil(size.width);
+    return ceilf(size.width);
 }
 
 @end
