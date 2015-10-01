@@ -103,7 +103,7 @@
         self.step2 = YES;
         [UIView animateWithDuration:0.3
                          animations:^{
-                             self.label.text = NSLocalizedString(@"Great! Could you leave us a nice review?\n\nIt really helps.", @"This is the text we display to the user when we ask them for a review and they've indicated they like the app");
+                             self.label.text = NSLocalizedString(@"Great! Could you leave us a nice review?\nIt really helps.", @"This is the text we display to the user when we ask them for a review and they've indicated they like the app");
                              [self.leftButton setTitle:NSLocalizedString(@"Leave a Review", @"This is one of the buttons we display when prompting the user for a review")forState:UIControlStateNormal];
                              [self.rightButton setTitle:NSLocalizedString(@"No Thanks", @"This is one of the buttons we display when prompting the user for a review") forState:UIControlStateNormal];
                          }];
