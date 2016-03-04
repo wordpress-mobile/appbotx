@@ -74,7 +74,7 @@
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSUInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.notifications.count;
 }
@@ -88,8 +88,8 @@
         cell = [[ABXNotificationTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    if (indexPath.row < self.notifications.count) {
-        [cell setNotification:self.notifications[indexPath.row]];
+    if (indexPath.row < (NSInteger)self.notifications.count) {
+        [cell setNotification:self.notifications[(NSUInteger)indexPath.row]];
     }
     
     return cell;
@@ -97,8 +97,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row < self.notifications.count) {
-        return [ABXNotificationTableViewCell heightForNotification:self.notifications[indexPath.row]
+    if (indexPath.row < (NSInteger)self.notifications.count) {
+        return [ABXNotificationTableViewCell heightForNotification:self.notifications[(NSUInteger)indexPath.row]
                                                withWidth:CGRectGetWidth(self.tableView.frame)];
     }
     return 44;
