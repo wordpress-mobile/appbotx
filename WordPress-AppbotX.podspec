@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.homepage         = "http://appbot.co"
   s.license          = 'MIT'
   s.author           = { "Stuart Hall" => "stuartkhall@gmail.com" }
-  s.source           = { :git => "http://github.com/appbotx/appbotx.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/wordpress-mobile/appbotx.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/stuartkhall'
   s.resources        = 'Classes/AppbotX.bundle'
 
