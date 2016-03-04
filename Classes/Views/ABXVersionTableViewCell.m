@@ -95,8 +95,6 @@
 
 + (CGFloat)heightForVersion:(ABXVersion*)version withWidth:(CGFloat)width
 {
-    NSLog(@"- Width : %f", width);
-    
     return [version.text heightForWidth:width - 30 andFont:[self detailFont]] + 60;
 }
 

@@ -56,9 +56,9 @@
         // See if we have the root language e.g. en for en-GB
         NSArray *parts = [language componentsSeparatedByString:@"-"];
         if (parts.count > 1) {
-            NSString *s = [self localizedStringForLanguage:[parts firstObject]];
-            if (s.length > 0) {
-                return s;
+            NSString *string = [self localizedStringForLanguage:[parts firstObject]];
+            if (string.length > 0) {
+                return string;
             }
         }
     }

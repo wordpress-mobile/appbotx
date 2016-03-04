@@ -121,7 +121,7 @@ static NSInteger const kCloseAlert = 1;
     self.attachmentsImageView.hidden = YES;
     self.attachmentsImageView.clipsToBounds = YES;
     self.attachmentsImageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.attachmentsImageView.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:1].CGColor;
+    self.attachmentsImageView.layer.borderColor = [UIColor colorWithWhite:0.9f alpha:1].CGColor;
     self.attachmentsImageView.layer.borderWidth = 1;
     self.attachmentsImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     [self.attachmentsView addSubview:self.attachmentsImageView];
@@ -485,8 +485,10 @@ static NSInteger const kCloseAlert = 1;
 
 - (void)onAttachment:(UIButton*)button
 {
+    [self.textView resignFirstResponder];
+    [self.textField resignFirstResponder];
+    
     UIActionSheet *sheet = [[UIActionSheet alloc] init];
-    sheet.title = nil;
     sheet.delegate = self;
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         [sheet addButtonWithTitle:NSLocalizedString(@"Take Photo", @"")];
@@ -560,16 +562,18 @@ static NSInteger const kCloseAlert = 1;
     [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
         NSInteger numberOfAssets = [group numberOfAssets];
         if (numberOfAssets > 0) {
-            NSInteger lastIndex = numberOfAssets - 1;
-            [group enumerateAssetsAtIndexes:[NSIndexSet indexSetWithIndex:lastIndex] options:0 usingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-                ALAssetRepresentation *rep = [result defaultRepresentation];
-                UIImage *image = [UIImage imageWithCGImage:[rep fullResolutionImage]];
-                if (image && image.size.width > 0) {
-                    *stop = YES;
-                    
-                    [self uploadImage:image];
-                }
-            }];
+            NSUInteger lastIndex = (NSUInteger)numberOfAssets - 1;
+            [group enumerateAssetsAtIndexes:[NSIndexSet indexSetWithIndex:lastIndex]
+                                    options:NSEnumerationConcurrent
+                                 usingBlock:^(ALAsset *result, NSUInteger index, BOOL *s) {
+                                     ALAssetRepresentation *rep = [result defaultRepresentation];
+                                     UIImage *image = [UIImage imageWithCGImage:[rep fullResolutionImage]];
+                                     if (image && image.size.width > 0) {
+                                         *s = YES;
+                                         
+                                         [self uploadImage:image];
+                                     }
+                                 }];
             
             *stop = YES;
         }

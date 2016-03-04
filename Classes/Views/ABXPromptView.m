@@ -55,8 +55,6 @@
     self.label.textAlignment = NSTextAlignmentCenter;
     self.label.numberOfLines = 0;
     self.label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
-    
-    self.label.text = NSLocalizedString(@"What do you think about WordPress?", @"This is the string we display when prompting the user to review the app");
     [self.container addSubview:self.label];
     
     self.leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
