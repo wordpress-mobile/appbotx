@@ -6,7 +6,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = "WordPress-AppbotX"
-  s.version          = "1.0.6"
+  s.version          = "1.0.7"
   s.summary          = "AppbotX is an Obj-C lib for the Appbot server."
   s.description      = "AppbotX is an iOS client library and sample application for the AppbotX service."
   s.homepage         = "http://appbot.co"
